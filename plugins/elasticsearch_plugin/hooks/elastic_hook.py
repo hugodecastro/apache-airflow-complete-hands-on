@@ -20,7 +20,7 @@ class ElasticHook(BaseHook):
 
         self.es = Elasticsearch(hosts, **conn_config)
         self.index = conn.schema
-        
+
 
     def info(self):
         return self.es.info()
@@ -32,5 +32,5 @@ class ElasticHook(BaseHook):
 
     def add_doc(self, index, doc_type, doc):
         self.set_index(index)
-        res = self.es.index(index=index, doc_type=doc_type, doc=doc)
+        res = self.es.index(index=index, doc_type=doc_type, body=doc)
         return res
